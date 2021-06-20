@@ -1,0 +1,2 @@
+venv/
+/django_scale/db.sqlite3 
