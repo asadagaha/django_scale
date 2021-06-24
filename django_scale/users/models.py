@@ -36,18 +36,24 @@ class UserManager(BaseUserManager):
  
  
 class User(AbstractBaseUser, PermissionsMixin): 
+  SEX_CHOICES = (
+        ('F', '女性',),
+        ('M', '男性',),
+        ('U', '不詳',),
+    ) 
+
+
   """カスタムユーザーモデル""" 
   email          = models.EmailField(   "メールアドレス", unique=True) 
-  is_staff       = models.BooleanField( "is_staff",     default=False) 
-  is_active      = models.BooleanField( "is_active",    default=True) 
-  date_joined    = models.DateTimeField("date_joined",  default=timezone.now) 
-  age            = models.IntegerField( "年齢",         blank=False, default=0) 
-  sex            = models.IntegerField( "性別",         blank=False, default=0) 
-  height         = models.FloatField(   "身長",         blank=False, default=160)
+  is_staff       = models.BooleanField( "is_staff",       default=False) 
+  is_active      = models.BooleanField( "is_active",      default=True) 
+  date_joined    = models.DateTimeField("date_joined",    default=timezone.now) 
+  birth          = models.DateTimeField( "誕生日",        ) 
+  sex            = models.CharField(    "性別", max_length=1, choices=SEX_CHOICES) 
+  height         = models.FloatField(   "身長",           )
 
  
   objects = UserManager() 
- 
   USERNAME_FIELD = "email" 
   EMAIL_FIELD = "email" 
   REQUIRED_FIELDS = [] 

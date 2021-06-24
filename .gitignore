@@ -1,2 +1,3 @@
 venv/
 /django_scale/db.sqlite3 
+/scale/migrations/

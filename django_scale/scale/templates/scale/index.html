@@ -1,3 +1,8 @@
+{% extends 'scale/base.html' %} 
+ 
+{% block content %} 
+ 
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,15 +12,27 @@
 
 <body>
     <h1>BMI測定</h1>
+    {% if request.user.is_authenticated %} 
     <form action="#" method="post">
     <h1>ユーザーフォーム</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">送信</button>
+        <button type="submit">測定</button>
+        <p>適正体重:{{ healthy_weight }}</p>
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+        <img src="data:image/png;base64, {{ graph | safe }} " alt="">
+
     </form>
-    <p>BMI:{{ bmi }}</p>
-    <p>適正体重:{{ healthy_weight }}</p>
+    {% endif %} 
 
 </body>
 </html>
+{% endblock %} 

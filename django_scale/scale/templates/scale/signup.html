@@ -1,0 +1,33 @@
+{% extends 'scale/base.html' %} 
+ 
+{% block content %} 
+ 
+<h2>ユーザー登録</h2> 
+ 
+<form method="POST" action="{% url 'scale:signup' %}">
+  {% csrf_token %} 
+  <label>生年月日</label> 
+  {{ form.birth }} 
+  <br> 
+  <label>性別</label> 
+  {{ form.sex }} 
+  <br> 
+  <label>身長</label> 
+  {{ form.height }} 
+  <br> 
+  <label>メールアドレス</label> 
+  {{ form.email }} 
+  {{ form.email.errors }} 
+  <br> 
+  <label>パスワード</label> 
+  {{ form.password1 }} 
+  {{ form.password1.errors }} 
+  <br> 
+  <label>パスワード(確認)</label> 
+  {{ form.password2 }} 
+  {{ form.password2.errors }} 
+  <br> 
+  <input type="submit" value="登録する">
+</form> 
+ 
+{% endblock %} 

@@ -44,6 +44,9 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'users.User'  # 追加
+LOGIN_URL = 'scale:login' 
+LOGIN_REDIRECT_URL = 'scale:index' 
+LOGOUT_REDIRECT_URL = 'scale:index'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
